@@ -1,0 +1,14 @@
+#!/bin/bash
+# write to a file then read the file to prevent flickering
+while true; do
+dff > /tmp/supermon
+free -m >> /tmp/supermon
+hamachi list >> /tmp/supermon
+echo "TCP CONNECTIONS" >> /tmp/supermon
+netstat --tcp --program >> /tmp/supermon
+echo "UDP CONNECTIONS" >> /tmp/supermon
+netstat --udp --program >> /tmp/supermon
+clear
+cat /tmp/supermon
+sleep 15
+done

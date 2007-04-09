@@ -1,0 +1,5 @@
+#!/bin/bash
+(  wget -q -O /mnt/alexandria/podcasts/$1-$(date +%Y%m%d).mp3 http://newsstream1.publicradio.org:80/ &
+   sleep $2
+   kill $!) 2> /dev/null
+xmms --enqueue /mnt/alexandria/podcasts/$1-$(date +%Y%m%d).mp3

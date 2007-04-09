@@ -1,0 +1,12 @@
+#!/bin/bash
+workdir=/home/doug/tmp/rartest/
+locald=$PWD
+for arg in "$@"
+do
+  unrar x "$arg" "$workdir"
+  cd "$workdir"
+  echo "$locald/`basename "$arg" .cbr`.zip"
+  zip -r -9 "$locald/`basename "$arg" .cbr`.zip" *
+  mv "$locald/`basename "$arg" .cbr`.zip" "$locald/`basename "$arg" .cbr`.cbz"
+  rm -rf $workdir/*
+done
