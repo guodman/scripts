@@ -1,13 +1,15 @@
 #!/bin/bash
 # write to a file then read the file to prevent flickering
 while true; do
-dff > /tmp/supermon
+echo "           Time is `date +%l:%M`" > /tmp/supermon
+dff >> /tmp/supermon
 free -m >> /tmp/supermon
-hamachi list >> /tmp/supermon
-echo "TCP CONNECTIONS" >> /tmp/supermon
-netstat --tcp --program >> /tmp/supermon
-echo "UDP CONNECTIONS" >> /tmp/supermon
-netstat --udp --program >> /tmp/supermon
+fping 192.168.1.1 192.168.0.1 google.com mentormate.com >> /tmp/supermon
+#hamachi list >> /tmp/supermon
+#echo "TCP CONNECTIONS" >> /tmp/supermon
+#netstat --tcp --program >> /tmp/supermon
+#echo "UDP CONNECTIONS" >> /tmp/supermon
+#netstat --udp --program >> /tmp/supermon
 clear
 cat /tmp/supermon
 sleep 15
