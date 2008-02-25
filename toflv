@@ -1,0 +1,2 @@
+#!/bin/bash
+/home/doug/apps/ffmpeg/bin/ffmpeg -i "$1" -ar 22050 -ab 128000 -aspect 4:3 -b 400000 -r 12 -f flv -s 320x240 -acodec libmp3lame -ac 1 "$2"
