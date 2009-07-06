@@ -1,0 +1,8 @@
+#!/bin/bash
+(echo "Hostname SpaceAllocated  SpaceUsed  SpaceRemaining  Percent Filesystem"
+for arg in `vzlist -H -o ctid`
+do
+        hostname=`vzlist -H -o ctid,hostname | grep $arg | sed "s/$arg//g" - | sed 's/^[ \t]*//' - | sed 's/[ \t]*$//' -`
+        space=`vzctl exec $arg df -h | grep /$ | sed 's/simfs//g' | sed 's/^[ \t]*//' - | sed 's/[ \t]*$//' -`
+        echo "$hostname $space"
+done ) | column -t
